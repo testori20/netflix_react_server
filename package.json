@@ -1,0 +1,27 @@
+{
+  "name": "netflix_react_server",
+  "version": "1.0.0",
+  "description": "넷플릭스 서버",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/overaction/netflix_react_server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/overaction/netflix_react_server/issues"
+  },
+  "homepage": "https://github.com/overaction/netflix_react_server#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.5",
+    "nodemon": "^2.0.12"
+  }
+}
