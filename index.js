@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 
 // 라우터
 const authRoute = require('./routes/auth');
+const userRoute = require('./routes/users');
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ main()
 // 3. 라우터 분리 (미들웨어 추가)
 // /api/auth 에 대한 요청을 할때 authRoute에서 작성한 코드대로 작동하게 된다
 app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
 
 // 4. 서버 오픈
 app.listen(8800, () => {
