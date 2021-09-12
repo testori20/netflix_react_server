@@ -8,6 +8,7 @@ const dotenv = require('dotenv');
 // 라우터
 const authRoute = require('./routes/auth');
 const userRoute = require('./routes/users');
+const movieRoute = require('./routes/movies');
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ main()
 // /api/auth 에 대한 요청을 할때 authRoute에서 작성한 코드대로 작동하게 된다
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
+app.use("/api/movies", movieRoute);
 
 // 4. 서버 오픈
 app.listen(8800, () => {
