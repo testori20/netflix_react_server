@@ -1,5 +1,5 @@
 import "./sidebar.css"
-import {LineStyle,Timeline, TrendingUp, PermIdentity, Storefront, AttachMoney, BarChart, MailOutline, DynamicFeed, ChatBubbleOutline,WorkOutline,Report, PlayCircleOutline} from '@material-ui/icons';
+import {LineStyle,Timeline, TrendingUp, PermIdentity, Storefront, AttachMoney, BarChart, MailOutline, DynamicFeed, ChatBubbleOutline,WorkOutline,Report} from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
@@ -33,9 +33,9 @@ export default function Sidebar() {
                                 유저
                             </li>
                         </Link>
-                        <Link to="/movies" className="link">
+                        <Link to="/products" className="link">
                             <li className="sidebarListItem">
-                                <PlayCircleOutline className="sidebarIcon" />
+                                <Storefront className="sidebarIcon" />
                                 제품
                             </li>
                         </Link>
