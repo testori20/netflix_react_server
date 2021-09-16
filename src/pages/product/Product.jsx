@@ -1,57 +1,52 @@
 import { Publish } from '@material-ui/icons'
-import { Link } from 'react-router-dom'
-import Chart from '../../components/chart/Chart'
-import { productData } from '../../dummyData'
+import { useEffect } from 'react';
+import { Link, useLocation, Redirect } from 'react-router-dom'
 import "./product.css"
 
 export default function Product() {
+    const location = useLocation();
+    const movie = location.movie;
+
     return (
         <div className="product">
             <div className="productTitleContainer">
-                <h1 className="productTitle">Product</h1>
+                <h1 className="productTitle">영화</h1>
                 <Link to="/newproduct">
-                    <button className="productAddButton">Create</button>
+                    <button className="productAddButton">생성</button>
                 </Link>
             </div>
             <div className="productTop">
-                <div className="productTopLeft">
-                    <Chart
-                        data={productData}
-                        dataKey="가격"
-                        title="가격 추이"
-                    />
-                </div>
                 <div className="productTopRight">
                     <div className="productInfoTop">
                         <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/542px-Unknown_person.jpg"
+                            src={movie.img || ""}
                             alt=""
                             className="productInfoImg"
                         />
-                        <span className="productName">에어팟</span>
+                        <span className="productName">{movie.title}</span>
                     </div>
                     <div className="productInfoBottom">
                         <div className="productInfoItem">
                             <div className="productInfoKey">아이디: </div>
-                            <div className="productInfoValue">123</div>
+                            <div className="productInfoValue">{movie._id}</div>
                         </div>
                     </div>
                     <div className="productInfoBottom">
                         <div className="productInfoItem">
-                            <div className="productInfoKey">가격: </div>
-                            <div className="productInfoValue">5123</div>
+                            <div className="productInfoKey">장르: </div>
+                            <div className="productInfoValue">{movie.genre}</div>
                         </div>
                     </div>
                     <div className="productInfoBottom">
                         <div className="productInfoItem">
-                            <div className="productInfoKey">활성화: </div>
-                            <div className="productInfoValue">예</div>
+                            <div className="productInfoKey">년도: </div>
+                            <div className="productInfoValue">{movie.year}</div>
                         </div>
                     </div>
                     <div className="productInfoBottom">
                         <div className="productInfoItem">
-                            <div className="productInfoKey">품절:</div>
-                            <div className="productInfoValue">아니오</div>
+                            <div className="productInfoKey">상영시간:</div>
+                            <div className="productInfoValue">{movie.limit}</div>
                         </div>
                     </div>
                 </div>
@@ -59,30 +54,34 @@ export default function Product() {
             <div className="productBottom">
                 <form className="productForm">
                     <div className="productFormLeft">
-                        <label>제품 이름</label>
-                        <input type="text" placeholder="에어팟" />
-                        <label>품절</label>
-                        <select name="inStock" id="inStock">
-                            <option value="yes">예</option>
-                            <option value="no">아니요</option>
-                        </select>
-                        <label>활성화</label>
-                        <select name="active" id="active">
-                            <option value="yes">예</option>
-                            <option value="no">아니요</option>
-                        </select>
+                        <label>영화 이름</label>
+                        <input type="text" placeholder={movie.title} />
+                        <label>년도</label>
+                        <input type="text" placeholder={movie.year} />
+                        <label>장르</label>
+                        <input type="text" placeholder={movie.genre} />
+                        <label>상영시간</label>
+                        <input type="text" placeholder={movie.limit} />
+                        <label>트레일러</label>
+                        <input type="file" placeholder={movie.trailer} />
+                        <label>비디오</label>
+                        <input type="file" placeholder={movie.video} />
                     </div>
                     <div className="productFormRight">
                         <div className="productUpload">
                             <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/542px-Unknown_person.jpg"
+                                src={movie.img || ""}
                                 alt=""
                                 className="productUploadImg"
                             />
-                            <label for="file">
+                            <label htmlFor="file">
                                 <Publish />
                             </label>
-                            <input type="file" id="file" style={{display:"none"}} />
+                            <input
+                                type="file"
+                                id="file"
+                                style={{ display: 'none' }}
+                            />
                         </div>
                         <button className="productButton">업데이트</button>
                     </div>

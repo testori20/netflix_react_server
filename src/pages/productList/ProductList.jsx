@@ -1,22 +1,27 @@
 import "./productList.css"
 import { DataGrid } from '@material-ui/data-grid'
 import { DeleteOutline } from '@material-ui/icons'
-import { productRows } from '../../dummyData'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useContext, useEffect } from 'react'
+import { MovieContext } from '../../context/movieContext/MovieContext'
+import { deleteMovies, getMovies } from '../../context/movieContext/apiCalls'
 
 export default function ProductList() {
-    const [data, setData] = useState(productRows);
+    const {movies, dispatch} = useContext(MovieContext);
+
+    useEffect(() => {
+        getMovies(dispatch);
+    },[dispatch]);
+
     const handleDelete = (id) => {
-        console.log(id);
-        setData(data.filter(item => item.id !== id));
+        deleteMovies(id,dispatch)
     }
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 90 },
+        { field: '_id', headerName: '아이디', width: 120 },
         {
-            field: 'product',
-            headerName: '제품',
+            field: 'movie',
+            headerName: '영화',
             width: 200,
             renderCell: params => {
                 return (
@@ -26,19 +31,29 @@ export default function ProductList() {
                             alt=""
                             className="productListImg"
                         />
-                        {params.row.name}
+                        {params.row.title}
                     </div>
                 )
             },
         },
         {
-            field: 'stock',
-            headerName: '스톡',
-            width: 200,
+            field: 'genre',
+            headerName: '장르',
+            width: 120,
         },
         {
-            field: 'price',
-            headerName: '가격',
+            field: 'year',
+            headerName: '년도',
+            width: 120,
+        },
+        {
+            field: 'limit',
+            headerName: '상영시간',
+            width: 120,
+        },
+        {
+            field: 'isSeries',
+            headerName: '시리즈',
             width: 120,
         },
         {
@@ -48,10 +63,10 @@ export default function ProductList() {
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={'/product/' + params.row.id}>
+                        <Link to={{pathname:'/product/' + params.row._id, movie: params.row}}>
                             <button className="productListEdit">수정</button>
                         </Link>
-                        <DeleteOutline className="productListDelete" onClick={() => handleDelete(params.row.id)}/>
+                        <DeleteOutline className="productListDelete" onClick={() => handleDelete(params.row._id)}/>
                     </>
                 )
             },
@@ -60,11 +75,12 @@ export default function ProductList() {
     return (
         <div className="productList">
             <DataGrid
-                rows={data}
+                rows={movies}
                 columns={columns}
-                pageSize={9}
+                pageSize={8}
                 checkboxSelection
                 disableSelectionOnClick
+                getRowId={(row) => row._id}
             />
         </div>
     )
