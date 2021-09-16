@@ -8,3 +8,8 @@ export const loginSuccess = (user) => ({
 export const loginFailure = (err) => ({
     type: "LOGIN_FAILURE",
 });
+
+// 로그아웃
+export const logout = () => ({
+    type: "LOGOUT_START",
+});
