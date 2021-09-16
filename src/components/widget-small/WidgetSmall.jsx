@@ -21,7 +21,7 @@ export default function WidgetSmall() {
         getNewUsers();
         
     }, [])
-
+    console.log(newUsers);
     return (
         <div className="widgetSmall">
             <span className="widgetSmallTitle">새로운 유저</span>
