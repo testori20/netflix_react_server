@@ -9,6 +9,7 @@ export const getMovieFailure = () => ({
     type: "GET_MOVIES_FAILURE",
 });
 
+// 영화 삭제
 export const deleteMovieStart = () => ({
     type: "DELETE_MOVIES_START",
 });
@@ -18,4 +19,28 @@ export const deleteMovieSuccess = (id) => ({
 });
 export const deleteMovieFailure = () => ({
     type: "DELETE_MOVIES_FAILURE",
+});
+
+// 영화 생성
+export const createMovieStart = () => ({
+    type: "CREATE_MOVIES_START",
+});
+export const createMovieSuccess = (movie) => ({
+    type: "CREATE_MOVIES_SUCCESS",
+    payload: movie
+});
+export const createMovieFailure = () => ({
+    type: "CREATE_MOVIES_FAILURE",
+});
+
+// 영화 업데이트
+export const updateMovieStart = () => ({
+    type: "UPDATE_MOVIES_START",
+});
+export const updateMovieSuccess = (movie) => ({
+    type: "UPDATE_MOVIES_SUCCESS",
+    payload: movie
+});
+export const updateMovieFailure = () => ({
+    type: "UPDATE_MOVIES_FAILURE",
 });
